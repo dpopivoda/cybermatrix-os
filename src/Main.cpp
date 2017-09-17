@@ -1,7 +1,12 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 int main(int argc, char** argv) {
-	sf::RenderWindow window(sf::VideoMode(200, 200), "Cybermatrix OS");
+	sf::SoundBuffer sound_buffer;
+	sound_buffer.loadFromFile("./data/startup.wav");
+	sf::Sound sound(sound_buffer);
+	sound.play();
+	sf::RenderWindow window(sf::VideoMode(800, 600), "Cybermatrix OS");
 	while (window.isOpen()) {
 		sf::Event event;
 		while (window.pollEvent(event)) {

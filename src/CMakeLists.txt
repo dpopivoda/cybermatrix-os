@@ -22,6 +22,13 @@ if(WIN32)
 		"${CMAKE_SOURCE_DIR}/SFML/extlibs/bin/${CONFIG_ARCH_TYPE}/openal32.dll"
 		"${CMAKE_BINARY_DIR}/bin/${CONFIG_BIN_SUBDIR}/openal32.dll"
 	)
+	add_custom_command(
+		TARGET "${PROJECT_NAME}"
+		POST_BUILD COMMAND
+		${CMAKE_COMMAND} -E copy_if_different
+		"${CMAKE_SOURCE_DIR}/data/startup.wav"
+		"${CMAKE_BINARY_DIR}/bin/${CONFIG_BIN_SUBDIR}/data/startup.wav"
+	)
 	if(BUILD_SHARED_LIBS)
 		set_target_properties(
 			"sfml-graphics" "sfml-window" "sfml-audio" "sfml-network" "sfml-system" PROPERTIES
