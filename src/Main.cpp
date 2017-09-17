@@ -1,12 +1,10 @@
 #include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
+
+#include "HandleMenu.hpp"
 
 int main(int argc, char** argv) {
-	sf::SoundBuffer sound_buffer;
-	sound_buffer.loadFromFile("./data/startup.wav");
-	sf::Sound sound(sound_buffer);
-	sound.play();
-	sf::RenderWindow window(sf::VideoMode(800, 600), "Cybermatrix OS");
+	sf::RenderWindow window(sf::VideoMode(800, 600), "Cybermatrix OS", sf::Style::Titlebar | sf::Style::Close);
+	sf::Clock clock;
 	while (window.isOpen()) {
 		sf::Event event;
 		while (window.pollEvent(event)) {
@@ -14,7 +12,10 @@ int main(int argc, char** argv) {
 				window.close();
 			}
 		}
+		HandleMenu(clock.getElapsedTime().asSeconds());
+		clock.restart();
 		window.clear();
+		DrawMenu(window);
 		window.display();
     }
 	return 0;

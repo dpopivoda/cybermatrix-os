@@ -1,5 +1,5 @@
-set("${PROJECT_NAME}_headers" "")
-set("${PROJECT_NAME}_sources" "Main.cpp")
+set("${PROJECT_NAME}_headers" "HandleMenu.hpp")
+set("${PROJECT_NAME}_sources" "HandleMenu.cpp" "Main.cpp")
 
 add_executable("${PROJECT_NAME}" "${${PROJECT_NAME}_headers}" "${${PROJECT_NAME}_sources}")
 
@@ -28,6 +28,20 @@ if(WIN32)
 		${CMAKE_COMMAND} -E copy_if_different
 		"${CMAKE_SOURCE_DIR}/data/startup.wav"
 		"${CMAKE_BINARY_DIR}/bin/${CONFIG_BIN_SUBDIR}/data/startup.wav"
+	)
+	add_custom_command(
+		TARGET "${PROJECT_NAME}"
+		POST_BUILD COMMAND
+		${CMAKE_COMMAND} -E copy_if_different
+		"${CMAKE_SOURCE_DIR}/data/logo.png"
+		"${CMAKE_BINARY_DIR}/bin/${CONFIG_BIN_SUBDIR}/data/logo.png"
+	)
+	add_custom_command(
+		TARGET "${PROJECT_NAME}"
+		POST_BUILD COMMAND
+		${CMAKE_COMMAND} -E copy_if_different
+		"${CMAKE_SOURCE_DIR}/data/cyberfont.ttf"
+		"${CMAKE_BINARY_DIR}/bin/${CONFIG_BIN_SUBDIR}/data/cyberfont.ttf"
 	)
 	if(BUILD_SHARED_LIBS)
 		set_target_properties(
