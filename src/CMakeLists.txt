@@ -1,5 +1,5 @@
-set("${PROJECT_NAME}_headers", "")
-set("${PROJECT_NAME}_sources", "Main.cpp")
+set("${PROJECT_NAME}_headers" "")
+set("${PROJECT_NAME}_sources" "Main.cpp")
 
 add_executable("${PROJECT_NAME}" "${${PROJECT_NAME}_headers}" "${${PROJECT_NAME}_sources}")
 
