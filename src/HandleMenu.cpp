@@ -5,6 +5,7 @@
 #include <math.h>
 
 #include "HandleMenu.hpp"
+#include "OS_spec.hpp"
 
 namespace Stage {
 	enum Stage {
@@ -31,19 +32,19 @@ void HandleMenu(float deltaTime) {
 	switch (currentStage) {
 	case Stage::LOAD_LOGO:
 		texture[0] = new sf::Texture;
-		texture[0]->loadFromFile("./data/logo.png");
+		texture[0]->loadFromFile(getProgPath(std::wstring(L"data/logo.png")));
 		sprite[0] = new sf::Sprite(*(texture[0]));
 		sprite[0]->setScale(0.5F, 0.5F);
 		sprite[0]->setOrigin(276.0F, 64.0F);
 		sprite[0]->setPosition(400.0F, 300.0F);
 		sprite[0]->setColor(sf::Color(255, 255, 255, 255 * 0.8F));
 		font[0] = new sf::Font;
-		font[0]->loadFromFile("./data/cyberfont.ttf");
+		font[0]->loadFromFile(getProgPath(std::wstring(L"data/cyberfont.ttf")));
 		currentStage = Stage::LOAD_STARTUP_JINGLE;
 		break;
 	case Stage::LOAD_STARTUP_JINGLE:
 		soundBuffer[0] = new sf::SoundBuffer;
-		soundBuffer[0]->loadFromFile("./data/startup.wav");
+		soundBuffer[0]->loadFromFile(getProgPath(std::wstring(L"data/startup.wav")));
 		sound[0] = new sf::Sound(*(soundBuffer[0]));
 		sound[0]->play();
 		timer = 5.0F;

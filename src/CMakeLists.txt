@@ -1,5 +1,5 @@
-set("${PROJECT_NAME}_headers" "HandleMenu.hpp")
-set("${PROJECT_NAME}_sources" "HandleMenu.cpp" "Main.cpp")
+set("${PROJECT_NAME}_headers" "OS_spec.hpp" "HandleMenu.hpp")
+set("${PROJECT_NAME}_sources" "OS_spec.cpp" "HandleMenu.cpp" "Main.cpp")
 
 add_executable("${PROJECT_NAME}" "${${PROJECT_NAME}_headers}" "${${PROJECT_NAME}_sources}")
 
@@ -51,6 +51,7 @@ if(WIN32)
 	else()
 		target_compile_definitions("${PROJECT_NAME}" PRIVATE "SFML_STATIC")
 	endif()
+	target_compile_definitions("${PROJECT_NAME}" PRIVATE "_TARGET_WINDOWS")
 else()
 	message(FATAL_ERROR "${CMAKE_SYSTEM_NAME} is currently not supported.")
 endif()
